@@ -1,13 +1,12 @@
 import { useState } from "react";
+import EmailForm from "./components/EmailForm";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1 className="font-bold text-center min-h-screen flex justify-center items-center">
-        hello world
-      </h1>
+      <div className="min-h-screen ">
+        <EmailForm />
+      </div>
     </>
   );
 }
