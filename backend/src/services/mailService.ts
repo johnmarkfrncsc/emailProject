@@ -1,9 +1,9 @@
-import nodemailer from "nodemailer"
+import sgMail from "@sendgrid/mail"
 import dotenv from "dotenv"
-import net from "net"
-
 
 dotenv.config();
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY!)
 
 export interface emailPayload {
     to: string,
@@ -11,19 +11,9 @@ export interface emailPayload {
     body: string
 }
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASSWORD,
-    },
-} as nodemailer.TransportOptions)
-
-export async function sendEmailService(payload: emailPayload) : Promise<void> {
-    await transporter.sendMail({
-        from: process.env.GMAIL_USER,
+export async function sendEmailService(payload: emailPayload): Promise<void> {
+    await sgMail.send({
+        from: process.env.GMAIL_USER!,  // must be a verified sender in SendGrid
         to: payload.to,
         subject: payload.subject,
         text: payload.body
