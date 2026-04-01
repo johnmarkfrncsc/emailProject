@@ -11,13 +11,16 @@ export interface emailPayload {
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,              
-    secure: false,           
+    port: 587,
+    secure: false,
+    tls: {
+        rejectUnauthorized: false,
+    },
     auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASSWORD,
     }
-})
+} as nodemailer.TransportOptions)
 
 export async function sendEmailService(payload: emailPayload) : Promise<void> {
     await transporter.sendMail({
