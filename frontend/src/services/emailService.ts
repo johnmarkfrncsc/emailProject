@@ -1,6 +1,4 @@
 import axios from "axios"
-import.meta.env.VITE_APP_API_URL
-
 
 export interface emailPayload {
     to: string,
@@ -8,13 +6,11 @@ export interface emailPayload {
     body: string
 }
 
-export async function sendEmail(payload:emailPayload): Promise <void> {
-    
+export async function sendEmail(payload: emailPayload): Promise<void> {
     try {
-        const baseURL = import.meta.env.VITE_APP_API_UR
-         await axios.post(`${baseURL}/api/send-email`, payload)
+        const baseURL = import.meta.env.VITE_APP_API_URL
+        await axios.post(`${baseURL}/api/send-email`, payload)
     } catch (error) {
-        console.log("Error in emailService.tsx", error)
+        console.log("Error in emailService.ts", error)
     }
 }
-
