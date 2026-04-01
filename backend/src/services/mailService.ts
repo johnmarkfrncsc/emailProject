@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer"
 import dotenv from "dotenv"
 
-
 dotenv.config();
 
 export interface emailPayload {
@@ -11,20 +10,20 @@ export interface emailPayload {
 }
 
 const transporter = nodemailer.createTransport({
-    service : "gmail",
+    host: "smtp.gmail.com",
+    port: 587,              
+    secure: false,           
     auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASSWORD,
     }
 })
 
-export async function sendEmailService(payload: emailPayload) : Promise <void> {
-
+export async function sendEmailService(payload: emailPayload) : Promise<void> {
     await transporter.sendMail({
         from: process.env.GMAIL_USER,
         to: payload.to,
         subject: payload.subject,
         text: payload.body
     })
-
 }
