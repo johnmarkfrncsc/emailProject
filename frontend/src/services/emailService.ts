@@ -10,7 +10,7 @@ export interface emailPayload {
 export async function sendEmail(payload:emailPayload): Promise <void> {
     
     try {
-        const baseURL = process.env.REACT_APP_API_URL
+        const baseURL = process.env.VITE_APP_API_URL
          await axios.post(`${baseURL}api/send-email`, payload)
     } catch (error) {
         console.log("Error in emailService.tsx", error)
