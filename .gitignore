@@ -1,4 +1,4 @@
 node_modules/
 jspm_packages/
 # Environment variables
-.envs
+.env
