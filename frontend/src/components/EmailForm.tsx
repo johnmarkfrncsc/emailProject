@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { emailPayload } from "../services/emailService";
 import { sendEmail } from "../services/emailService";
 import SuccessModal from "./SuccessModal";
 

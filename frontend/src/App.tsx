@@ -1,4 +1,3 @@
-import { useState } from "react";
 import EmailForm from "./components/EmailForm";
 
 function App() {
